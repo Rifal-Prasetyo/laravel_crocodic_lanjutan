@@ -124,3 +124,10 @@ Route::get('/list_users_service', function () {
 Route::get('/latest_post', function () {
     return PostService::latestPost();
 });
+
+
+// PERTEMUAN 11 - GIT
+// push Route to github with coomit message "add new route"
+Route::get('/test_git', function () {
+    return "test github";
+});
