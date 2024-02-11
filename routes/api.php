@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\User\ApiUserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::controller(ApiUserController::class)
+    ->prefix('/users')
+    ->group(function () {
+        Route::get('/', 'index'); // List User Route /api/users/
+        Route::get('/{id}', 'show'); // find User according ID Route /api/users/{id}
+        Route::post('/', 'post'); // Post User /api/users/
+        Route::put('/{id}', 'update'); //update user
+        Route::delete('/id', 'destroy'); //delete user
+    });
+
+Route::get('/coba', function (Request $request) {
+    return  [
+        'headers' => $request->header(),
+        'data' => $request->all()
+    ];
 });
